@@ -100,8 +100,8 @@ export const Hero: React.FC = () => {
             Book Free Strategy Audit
           </Button>
           <div className="flex gap-4">
-            {[Instagram, Twitter].map((Icon, i) => (
-              <a key={i} href="#" className="p-3 rounded-full border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-500 transition-all text-white/60">
+            {[Instagram, ].map((Icon, i) => (
+              <a key={i} href="https://www.instagram.com/aurexmedia.ae" className="p-3 rounded-full border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-500 transition-all text-white/60" target="_blank">
                 <Icon size={20} />
               </a>
             ))}
