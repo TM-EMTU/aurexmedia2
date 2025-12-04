@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/Button';
-import { Send, MapPin, Phone, Mail } from 'lucide-react';
+import { Send, MapPin, Phone, Mail, ChevronDown, Check } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [revenueOpen, setRevenueOpen] = useState(false);
+  const [revenue, setRevenue] = useState<string>('');
+  const revenueOptions = [
+    { value: '<10k', label: 'Less than $10k' },
+    { value: '10k-50k', label: '$10k – $50k' },
+    { value: '50k-200k', label: '$50k – $200k' },
+    { value: '200k-1m', label: '$200k – $1M' },
+    { value: '1m+', label: '$1M+' },
+  ];
 
   const inputClasses = (name: string) => `
     w-full bg-transparent border-b-2 py-4 text-white text-lg outline-none transition-all duration-300
@@ -41,7 +50,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-lg">Call Us</h4>
-                  <p className="text-gray-400">+971 50 123 4567</p>
+                  <p className="text-gray-400">+971545094099</p>
                 </div>
               </div>
 
@@ -51,7 +60,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-lg">Email Us</h4>
-                  <p className="text-gray-400">hello@aurexmedia.ae</p>
+                  <p className="text-gray-400">aurexmediaae@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -90,6 +99,45 @@ export const Contact: React.FC = () => {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                 />
+              </div>
+
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setRevenueOpen((o) => !o)}
+                  onFocus={() => setFocusedField('revenue')}
+                  onBlur={() => { setFocusedField(null); setRevenueOpen(false); }}
+                  className={`w-full rounded-xl border px-4 py-4 text-lg flex items-center justify-between transition-all duration-300 cursor-pointer ${
+                    revenueOpen || focusedField === 'revenue'
+                      ? 'border-gold-500 ring-2 ring-gold-500/30 bg-white/10'
+                      : 'border-white/10 bg-white/5'
+                  }`}
+                >
+                  <span className={`${revenue ? 'text-white' : 'text-white/60'}`}>
+                    {revenue ? revenueOptions.find(o => o.value === revenue)?.label : 'Monthly Revenue'}
+                  </span>
+                  <ChevronDown className={`ml-3 text-white/70 transition-transform ${revenueOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {revenueOpen && (
+                  <div className="absolute left-0 right-0 mt-2 rounded-2xl border border-white/10 bg-black/90 backdrop-blur-md shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden z-20">
+                    <div className="py-2">
+                      {revenueOptions.map((opt) => (
+                        <button
+                          type="button"
+                          key={opt.value}
+                          onMouseDown={(e) => { e.preventDefault(); setRevenue(opt.value); setRevenueOpen(false); }}
+                          className={`w-full text-left px-4 py-3 text-sm md:text-base flex items-center justify-between transition-colors ${
+                            revenue === opt.value ? 'bg-gold-500/10 text-gold-400' : 'text-white/80 hover:bg-white/5'
+                          }`}
+                        >
+                          <span>{opt.label}</span>
+                          {revenue === opt.value && <Check className="w-4 h-4" />}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="relative">

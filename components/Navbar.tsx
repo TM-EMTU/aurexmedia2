@@ -19,15 +19,17 @@ export const Navbar: React.FC = () => {
           }`}
       >
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gold-500 rounded-lg flex items-center justify-center">
-            <span className="font-display font-bold text-black text-xl">A</span>
+          <div className="flex flex-col items-center">
+            <img src="/images/logo.png" alt="Aurex Media" className="h-5 md:h-5 lg:h-8 w-auto object-contain" />
+            <div className="mt-0.5 text-center leading-none">
+              <div className="text-[6px] md:text-[8px] uppercase tracking-[0.35em] text-white/60">SOCIAL MEDIA AGENCY</div>
+            </div>
           </div>
-          <span className="font-display font-bold text-xl tracking-tighter text-white">AUREX<span className="text-gold-500">MEDIA</span></span>
         </div>
 
         <div className="hidden md:flex items-center gap-8">
           {['Services', 'Work', 'Process', 'About'].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group">
+            <a key={item} href={item === 'About' ? '#/about' : `#${item.toLowerCase()}`} className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group">
               {item}
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gold-500 transition-all duration-300 group-hover:w-full" />
             </a>
@@ -65,7 +67,7 @@ export const Navbar: React.FC = () => {
           {['Services', 'Work', 'Process', 'About', 'Contact'].map((item, i) => (
             <motion.a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={item === 'About' ? '#/about' : `#${item.toLowerCase()}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}

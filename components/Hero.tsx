@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from './ui/Button';
-import { ChevronDown, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { ChevronDown, Instagram, Twitter } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -100,7 +100,7 @@ export const Hero: React.FC = () => {
             Book Free Strategy Audit
           </Button>
           <div className="flex gap-4">
-            {[Instagram, Twitter, Linkedin].map((Icon, i) => (
+            {[Instagram, Twitter].map((Icon, i) => (
               <a key={i} href="#" className="p-3 rounded-full border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-500 transition-all text-white/60">
                 <Icon size={20} />
               </a>

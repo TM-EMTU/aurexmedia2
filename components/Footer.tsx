@@ -15,14 +15,13 @@ export const Footer: React.FC = () => {
           </div>
           
           <div className="flex gap-8 relative z-10">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">WhatsApp</a>
+            <a href="https://www.instagram.com/aurexmedia.ae?igsh=YmxwYm1mN3lwcDRu&utm_source=qr.*" className="text-gray-400 hover:text-white transition-colors">Instagram</a>
+            <a href="https://wa.me/971545094099" target="_blank" className="text-gray-400 hover:text-white transition-colors">WhatsApp</a>
           </div>
         </div>
         
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 relative z-10">
-          <p>© 2025 Aurex Media AE. All rights reserved.</p>
+          <p> 2025 Aurex Media AE. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-gold-500 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-gold-500 transition-colors">Terms of Service</a>
