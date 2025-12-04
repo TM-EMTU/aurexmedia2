@@ -8,11 +8,11 @@ export const Contact: React.FC = () => {
   const [revenueOpen, setRevenueOpen] = useState(false);
   const [revenue, setRevenue] = useState<string>('');
   const revenueOptions = [
-    { value: '<10k', label: 'Less than $10k' },
-    { value: '10k-50k', label: '$10k – $50k' },
-    { value: '50k-200k', label: '$50k – $200k' },
-    { value: '200k-1m', label: '$200k – $1M' },
-    { value: '1m+', label: '$1M+' },
+    { value: '<10k', label: 'Less than AED 10k' },
+    { value: '10k-50k', label: 'AED 10k – AED 50k' },
+    { value: '50k-200k', label: 'AED 50k – AED 200k' },
+    { value: '200k-1m', label: 'AED 200k – AED 1M' },
+    { value: '1m+', label: 'AED 1M+' },
   ];
 
   const inputClasses = (name: string) => `

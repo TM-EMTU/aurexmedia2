@@ -19,12 +19,10 @@ export const Navbar: React.FC = () => {
           }`}
       >
         <div className="flex items-center gap-2">
-          <div className="flex flex-col items-center">
-            <img src="/images/logo.png" alt="Aurex Media" className="h-5 md:h-5 lg:h-8 w-auto object-contain" />
-            <div className="mt-0.5 text-center leading-none">
-              <div className="text-[6px] md:text-[8px] uppercase tracking-[0.35em] text-white/60">SOCIAL MEDIA AGENCY</div>
-            </div>
+          <div className="w-8 h-8 bg-gold-500 rounded-lg flex items-center justify-center">
+            <span className="font-display font-bold text-black text-xl">A</span>
           </div>
+          <span className="font-display font-bold text-xl tracking-tighter text-white">AUREX<span className="text-gold-500">MEDIA</span></span>
         </div>
 
         <div className="hidden md:flex items-center gap-8">
