@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from './ui/Button';
-import { ChevronDown, Instagram, Twitter } from 'lucide-react';
+import { ChevronDown, Instagram } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
-  
+
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -27,25 +27,25 @@ export const Hero: React.FC = () => {
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-gold-500 rounded-full"
-            initial={{ 
-              x: Math.random() * window.innerWidth, 
+            initial={{
+              x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,
               opacity: Math.random() * 0.5 + 0.2
             }}
-            animate={{ 
+            animate={{
               y: [null, Math.random() * -100],
               opacity: [null, 0]
             }}
-            transition={{ 
+            transition={{
               duration: Math.random() * 5 + 5,
               repeat: Infinity,
-              ease: "linear" 
+              ease: "linear"
             }}
           />
         ))}
       </div>
 
-      <motion.div 
+      <motion.div
         style={{ y: y1, scale, opacity }}
         className="relative z-10 container mx-auto px-6 text-center flex flex-col items-center"
       >
@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
         </motion.div>
 
         <h1 className="font-display font-bold text-6xl md:text-8xl lg:text-9xl tracking-tighter text-white mb-6 leading-[0.9]">
-          <motion.span 
+          <motion.span
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -69,7 +69,7 @@ export const Hero: React.FC = () => {
           >
             REAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-500">STRATEGY</span>
           </motion.span>
-          <motion.span 
+          <motion.span
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -79,7 +79,7 @@ export const Hero: React.FC = () => {
           </motion.span>
         </h1>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
@@ -90,17 +90,17 @@ export const Hero: React.FC = () => {
           The ultimate problem-solvers for the digital age.
         </motion.p>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
           className="flex flex-col md:flex-row gap-6 items-center"
         >
-          <Button variant="primary" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
+          <Button variant="primary" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             Book Free Strategy Audit
           </Button>
           <div className="flex gap-4">
-            {[Instagram, ].map((Icon, i) => (
+            {[Instagram,].map((Icon, i) => (
               <a key={i} href="https://www.instagram.com/aurexmedia.ae" className="p-3 rounded-full border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-500 transition-all text-white/60" target="_blank">
                 <Icon size={20} />
               </a>
@@ -110,7 +110,7 @@ export const Hero: React.FC = () => {
       </motion.div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         style={{ y: y2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
       >
