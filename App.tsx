@@ -7,6 +7,7 @@ import { Portfolio } from './components/Portfolio';
 import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { Process } from './components/Process';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -70,24 +71,7 @@ function App() {
           <Testimonials />
           
           {/* Process Section (Compact) */}
-          <section id="process" className="py-20 bg-neutral-900 border-t border-b border-white/10">
-            <div className="container mx-auto px-6 text-center">
-               <h3 className="text-gold-500 font-bold uppercase tracking-widest mb-12">How We Work</h3>
-               <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-20">
-                 {['Strategy', 'Creation', 'Launch', 'Optimize'].map((step, i) => (
-                   <React.Fragment key={step}>
-                     <div className="flex flex-col items-center">
-                        <div className="w-16 h-16 rounded-full border border-gold-500 flex items-center justify-center text-xl font-bold font-display text-white mb-4 shadow-[0_0_15px_rgba(184,134,11,0.3)]">
-                          0{i+1}
-                        </div>
-                        <span className="text-lg font-bold text-white">{step}</span>
-                     </div>
-                     {i < 3 && <div className="hidden md:block w-20 h-[1px] bg-white/20" />}
-                   </React.Fragment>
-                 ))}
-               </div>
-            </div>
-          </section>
+          <Process />
 
           <Contact />
           <Footer />

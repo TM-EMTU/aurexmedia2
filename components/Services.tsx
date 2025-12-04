@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { TrendingUp, Globe, Video, MousePointerClick, Bot, LineChart, ArrowRight } from 'lucide-react';
 
 const services = [
@@ -100,8 +100,58 @@ export const Services: React.FC = () => {
 };
 
 const ServiceCard: React.FC<{ service: any; index: number }> = ({ service, index }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(cardRef, { amount: 0.6 });
+  const [isTouch, setIsTouch] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const timerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none), (pointer: coarse)');
+    const update = () => setIsTouch(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (!isTouch) {
+      if (timerRef.current) {
+        window.clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      setIsActive(false);
+      return;
+    }
+
+    if (inView) {
+      setIsActive(true);
+      if (timerRef.current) {
+        window.clearTimeout(timerRef.current);
+      }
+      timerRef.current = window.setTimeout(() => {
+        setIsActive(false);
+        timerRef.current = null;
+      }, 2000);
+    } else {
+      if (timerRef.current) {
+        window.clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      setIsActive(false);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        window.clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [isTouch, inView]);
+
   return (
     <motion.article
+      ref={cardRef}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -109,31 +159,31 @@ const ServiceCard: React.FC<{ service: any; index: number }> = ({ service, index
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="group relative h-[500px] w-full"
     >
-      <div className="p-[1px] rounded-3xl bg-gradient-to-br from-white/10 via-white/5 to-transparent group-hover:from-gold-500/40 group-hover:via-gold-500/20 group-hover:to-transparent transition-colors duration-500 h-full">
+      <div className={`p-[1px] rounded-3xl bg-gradient-to-br ${isActive ? 'from-gold-500/40 via-gold-500/20 to-transparent' : 'from-white/10 via-white/5 to-transparent'} group-hover:from-gold-500/40 group-hover:via-gold-500/20 group-hover:to-transparent transition-colors duration-500 h-full`}>
         <div className="relative h-full rounded-3xl overflow-hidden bg-neutral-900">
           {/* Image Background */}
-          <img src={service.image} alt={service.title} className="absolute inset-0 w-full h-full object-cover opacity-50 scale-100 group-hover:scale-105 transition-transform duration-700 ease-out" />
+          <img src={service.image} alt={service.title} className={`absolute inset-0 w-full h-full object-cover opacity-50 scale-100 transition-transform duration-700 ease-out ${isActive ? 'opacity-100 scale-105' : ''} group-hover:scale-105`} />
 
           {/* Hover Gradient */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-40 transition-opacity duration-500`} />
+          <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 ${isActive ? 'opacity-40' : ''} group-hover:opacity-40 transition-opacity duration-500`} />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
           <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
-            <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300">
+            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center backdrop-blur-sm transition-colors duration-300 ${isActive ? 'bg-gold-500 text-black' : 'bg-white/5'} group-hover:bg-gold-500 group-hover:text-black`}>
               <service.icon size={32} />
             </div>
 
             <div>
-              <h4 className="font-display text-4xl font-bold text-white mb-4 group-hover:translate-x-1 transition-transform duration-300">
+              <h4 className={`font-display text-4xl font-bold text-white mb-4 transition-transform duration-300 ${isActive ? 'translate-x-1' : ''} group-hover:translate-x-1`}>
                 {service.title}
               </h4>
-              <p className="text-gray-300 text-lg border-l-2 border-white/10 pl-4 group-hover:border-gold-500 transition-all duration-300">
+              <p className={`text-gray-300 text-lg border-l-2 pl-4 transition-all duration-300 ${isActive ? 'border-gold-500' : 'border-white/10'} group-hover:border-gold-500`}>
                 {service.desc}
               </p>
             </div>
 
-            <div className="flex items-center gap-3 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+            <div className={`flex items-center gap-3 opacity-0 translate-y-1 transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : ''} group-hover:opacity-100 group-hover:translate-y-0`}>
               <span className="text-gold-500 font-bold uppercase tracking-wider text-sm">Explore Service</span>
               <ArrowRight className="h-4 w-4 text-gold-500" />
             </div>
@@ -141,7 +191,7 @@ const ServiceCard: React.FC<{ service: any; index: number }> = ({ service, index
 
           {/* Decorative elements */}
           <div className="absolute -inset-1 pointer-events-none">
-            <div className="absolute left-[-30%] top-0 h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 translate-x-[-120%] group-hover:opacity-100 group-hover:translate-x-[130%] transition-all duration-700" />
+            <div className={`absolute left-[-30%] top-0 h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 translate-x-[-120%] transition-all duration-700 ${isActive ? 'opacity-100 translate-x-[130%]' : ''} group-hover:opacity-100 group-hover:translate-x-[130%]`} />
           </div>
         </div>
       </div>
