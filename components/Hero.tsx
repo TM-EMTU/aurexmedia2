@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from './ui/Button';
-import { ChevronDown, Instagram } from 'lucide-react';
+import { ChevronDown, Instagram, MessageCircle } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -100,11 +100,12 @@ export const Hero: React.FC = () => {
             Book Free Strategy Audit
           </Button>
           <div className="flex gap-4">
-            {[Instagram,].map((Icon, i) => (
-              <a key={i} href="https://www.instagram.com/aurexmedia.ae" className="p-3 rounded-full border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-500 transition-all text-white/60" target="_blank">
-                <Icon size={20} />
-              </a>
-            ))}
+            <a href="https://www.instagram.com/aurexmedia.ae" className="p-3 rounded-full border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-500 transition-all text-white/60" target="_blank" rel="noopener noreferrer">
+              <Instagram size={20} />
+            </a>
+            <a href="https://wa.me/971545094099" className="p-3 rounded-full border border-white/10 hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-500 transition-all text-white/60" target="_blank" rel="noopener noreferrer">
+              <MessageCircle size={20} />
+            </a>
           </div>
         </motion.div>
       </motion.div>
