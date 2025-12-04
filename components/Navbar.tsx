@@ -3,33 +3,20 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
-  const [isHidden, setIsHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 150) {
-      setIsHidden(true);
-    } else {
-      setIsHidden(false);
-    }
     setIsScrolled(latest > 50);
   });
 
   return (
     <>
       <motion.nav
-        variants={{
-          visible: { y: 0 },
-          hidden: { y: -100 },
-        }}
-        animate={isHidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 ${
-          isScrolled ? 'bg-black/80 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
-        }`}
+        initial={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-300 ${isScrolled ? 'bg-black/60 backdrop-blur-2xl border-b border-white/10 shadow-lg shadow-black/20' : 'bg-transparent'
+          }`}
       >
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-gold-500 rounded-lg flex items-center justify-center">
@@ -53,7 +40,7 @@ export const Navbar: React.FC = () => {
           </a>
         </div>
 
-        <button 
+        <button
           className="md:hidden text-white"
           onClick={() => setIsMobileOpen(true)}
         >
@@ -68,7 +55,7 @@ export const Navbar: React.FC = () => {
         transition={{ type: "spring", damping: 20 }}
         className="fixed inset-0 z-[60] bg-black flex flex-col items-center justify-center md:hidden"
       >
-        <button 
+        <button
           className="absolute top-6 right-6 text-white/50 hover:text-white"
           onClick={() => setIsMobileOpen(false)}
         >

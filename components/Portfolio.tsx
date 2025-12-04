@@ -18,7 +18,7 @@ export const Portfolio: React.FC = () => {
 
   return (
     <section id="work" ref={targetRef} className="relative h-[300vh] bg-black">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden pt-20">
         <motion.div style={{ x }} className="flex gap-16 px-16">
 
           <div className="w-[80vw] md:w-[60vw] h-[70vh] flex-shrink-0 flex flex-col justify-center">

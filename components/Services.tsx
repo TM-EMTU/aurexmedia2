@@ -24,7 +24,7 @@ const services = [
     title: 'Website Development',
     desc: 'Bespoke digital experiences with <1.5s load times.',
     icon: Globe,
-    color: 'from-orange-900 to-red-900',
+    color: 'from-blue-500 to-indigo-900',
     image: '/images/web.png'
   },
   {
@@ -32,7 +32,7 @@ const services = [
     title: 'Content Creation',
     desc: 'Viral reels and visuals that stop the scroll.',
     icon: Video,
-    color: 'from-pink-900 to-rose-900',
+    color: 'from-gray-800 to-neutral-900',
     image: '/images/content.png'
   },
   {
@@ -40,7 +40,7 @@ const services = [
     title: 'AI Automation for Business',
     desc: 'Streamline operations with intelligent automated workflows.',
     icon: Bot,
-    color: 'from-blue-900 to-cyan-900',
+    color: 'from-slate-800 to-slate-900',
     image: '/images/ai.png'
   },
   {
@@ -48,7 +48,7 @@ const services = [
     title: 'Business Growth Instructor',
     desc: 'Expert guidance to scale your business to new heights.',
     icon: LineChart,
-    color: 'from-yellow-900 to-amber-900',
+    color: 'from-amber-950 to-stone-900',
     image: '/images/growth.png'
   }
 ];
