@@ -37,7 +37,7 @@ export const Contact: React.FC = () => {
     setSubmitSuccess(false);
 
     try {
-      const response = await fetch('https://adam6544.app.n8n.cloud/webhook/6bb73d8d-daff-4e1e-9490-eefea5434ee5', {
+      const response = await fetch('https://adam6544.app.n8n.cloud/webhook-test/6bb73d8d-daff-4e1e-9490-eefea5434ee5', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
